@@ -2,22 +2,22 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class User {
+class AppUser {
   final String id;
   final String username;
   final String dmLink;
-  User({
+  AppUser({
     required this.id,
     required this.username,
     required this.dmLink,
   });
 
-  User copyWith({
+  AppUser copyWith({
     String? id,
     String? username,
     String? dmLink,
   }) {
-    return User(
+    return AppUser(
       id: id ?? this.id,
       username: username ?? this.username,
       dmLink: dmLink ?? this.dmLink,
@@ -32,17 +32,17 @@ class User {
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
+  factory AppUser.fromMap(Map<String, dynamic> map) {
+    return AppUser(
       id: map['id'],
       username: map['username'],
       dmLink: map['dmLink'],
     );
   }
 
-  factory User.fromFirebase(DocumentSnapshot documentSnapshot) {
+  factory AppUser.fromFirebase(DocumentSnapshot documentSnapshot) {
     final map = documentSnapshot.data() as Map<String, dynamic>;
-    return User(
+    return AppUser(
       id: map['id'],
       username: map['username'],
       dmLink: map['dmLink'],
@@ -51,7 +51,8 @@ class User {
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) => User.fromMap(json.decode(source));
+  factory AppUser.fromJson(String source) =>
+      AppUser.fromMap(json.decode(source));
 
   @override
   String toString() => 'User(id: $id, username: $username, dmLink: $dmLink)';
@@ -60,7 +61,7 @@ class User {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is User &&
+    return other is AppUser &&
         other.id == id &&
         other.username == username &&
         other.dmLink == dmLink;
