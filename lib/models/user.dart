@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class AppUser {
   final String id;
   final String username;
@@ -33,15 +31,6 @@ class AppUser {
   }
 
   factory AppUser.fromMap(Map<String, dynamic> map) {
-    return AppUser(
-      id: map['id'],
-      username: map['username'],
-      dmLink: map['dmLink'],
-    );
-  }
-
-  factory AppUser.fromFirebase(DocumentSnapshot documentSnapshot) {
-    final map = documentSnapshot.data() as Map<String, dynamic>;
     return AppUser(
       id: map['id'],
       username: map['username'],
