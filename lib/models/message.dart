@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Message {
   final String id;
   final String message;
@@ -43,16 +41,6 @@ class Message {
       message: map['message'],
       isOpened: map['isOpened'],
       isReplied: map['isReplied'],
-    );
-  }
-
-  factory Message.fromFirebase(DocumentSnapshot documentSnapshot) {
-    final map = documentSnapshot.data() as Map<String, dynamic>;
-    return Message(
-      id: documentSnapshot.id,
-      message: map['message'] ?? '',
-      isOpened: map['isOpened'] ?? false,
-      isReplied: map['isReplied'] ?? false,
     );
   }
 
