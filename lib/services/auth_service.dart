@@ -5,9 +5,9 @@ import 'package:appwrite/models.dart';
 import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:secret_dms/constants/app_constants.dart';
+import 'package:secret_dms/models/failure.dart';
 import 'package:secret_dms/models/user.dart';
 import 'package:secret_dms/services/local/user_storage.dart';
-import 'package:secret_dms/utils/failure.dart';
 
 abstract class BaseAuthService {
   Future<Either<Failure, Session>> signInAnonymously();

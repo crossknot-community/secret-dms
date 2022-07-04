@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:secret_dms/models/failure.dart';
 import 'package:secret_dms/models/user.dart';
-import 'package:secret_dms/utils/failure.dart';
 
 part 'auth_states.freezed.dart';
 
