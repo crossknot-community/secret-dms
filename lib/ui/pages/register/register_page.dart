@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage(this.sessionToken, {Key? key}) : super(key: key);
+  final String sessionToken;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _RegisterPageState();
