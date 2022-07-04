@@ -5,11 +5,10 @@ import 'package:secret_dms/models/user.dart';
 part 'auth_states.freezed.dart';
 
 @freezed
-abstract class AuthStatus with _$AuthStatus {
-  const factory AuthStatus.init() = _AuthStatus;
-  const factory AuthStatus.loading() = _AuthStatusLoading;
-  const factory AuthStatus.authenticated(String sessionToken) = _Authenticated;
-  const factory AuthStatus.registered(AppUser user) = _Registered;
-  const factory AuthStatus.unAuthenticated() = _UnAuthenticated;
-  const factory AuthStatus.failure(Failure failure) = _Failure;
+abstract class AuthState with _$AuthState {
+  const factory AuthState.loading() = _AuthStatusLoading;
+  const factory AuthState.authenticated(String sessionToken) = _Authenticated;
+  const factory AuthState.registered(AppUser user) = _Registered;
+  const factory AuthState.unAuthenticated() = _UnAuthenticated;
+  const factory AuthState.failure(Failure failure) = _Failure;
 }
