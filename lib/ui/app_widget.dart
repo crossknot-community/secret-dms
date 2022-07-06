@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:secret_dms/di/di.dart';
+import 'package:secret_dms/models/states/auth_states.dart';
+import 'package:secret_dms/models/user.dart';
+import 'package:secret_dms/routes/route_names.dart';
 import 'package:secret_dms/routes/routes.dart';
 
-// final initializationProvider = FutureProvider<Unit>((ref) async {
-//   final auth = ref.watch(authNotifierProvider.notifier);
-//   await auth.checkAndUpdateAuthStatus();
-//   return unit;
-// });
+final initializationProvider = FutureProvider<Unit>((ref) async {
+  final auth = ref.watch(authNotifierProvider.notifier);
+  await auth.checkAndUpdateAuthStatus();
+  return unit;
+});
 
 class AppWidget extends ConsumerStatefulWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -18,28 +23,24 @@ class AppWidget extends ConsumerStatefulWidget {
 class _AppWidgetState extends ConsumerState<AppWidget> {
   @override
   Widget build(BuildContext context) {
-    // ref.watch(initializationProvider);
-    // ref.listen<AuthStates>(
-    //   authNotifierProvider,
-    //   ((previous, next) {
-    //     next.maybeWhen(
-    //       initial: () => appRouter.go(AppRouteNames.splashScreen),
-    //       unAuthenticated: () => appRouter.go(AppRouteNames.loginScreen),
-    //       authenticated: (value) {ConsumerStatefulWidget
-    //         userManager.init(value.user);
-
-    //         // if (user?.bio == "") {
-    //         //   appRouter.go(AppRouteNames.prfileUpdateScreen);
-    //         // } else {
-    //         //   appRouter.go(AppRouteNames.homeScreen);
-    //         // }
-    //         appRouter.go(AppRouteNames.feedScreen);
-    //       },
-    //       orElse: () {},
-    //     );
-    //   }),
-    // );
+    ref.watch(initializationProvider);
+    ref.listen<AuthState>(
+      authNotifierProvider,
+      ((previous, next) {
+        next.maybeWhen(
+          initial: () => appRouter.go(AppRouteNames.splash),
+          unAuthenticated: () => appRouter.go(AppRouteNames.login),
+          authenticated: (String token) =>
+              appRouter.go(AppRouteNames.register, extra: token),
+          registered: (AppUser user) {
+            appRouter.go(AppRouteNames.home);
+          },
+          orElse: () {},
+        );
+      }),
+    );
     return MaterialApp.router(
+      routeInformationProvider: appRouter.routeInformationProvider,
       routeInformationParser: appRouter.routeInformationParser,
       routerDelegate: appRouter.routerDelegate,
     );

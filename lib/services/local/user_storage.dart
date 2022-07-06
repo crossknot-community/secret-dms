@@ -1,7 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:secret_dms/models/user.dart';
-
-import 'base_storage.dart';
+import 'package:secret_dms/services/local/base_storage.dart';
 
 class UserStorage implements BaseStorage<AppUser> {
   final FlutterSecureStorage _secureStorage;
