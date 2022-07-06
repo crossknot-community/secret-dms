@@ -4,6 +4,7 @@ import 'package:secret_dms/di/di.dart';
 import 'package:secret_dms/ui/app_widget.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   setupDependencies();
   runApp(const ProviderScope(child: MyApp()));
 }

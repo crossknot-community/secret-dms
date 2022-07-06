@@ -7,11 +7,11 @@ import 'package:fpdart/fpdart.dart';
 import 'package:secret_dms/constants/app_constants.dart';
 import 'package:secret_dms/models/failure.dart';
 import 'package:secret_dms/models/user.dart';
-import 'package:secret_dms/services/local/user_storage.dart';
+import 'package:secret_dms/services/local/base_storage.dart';
 
 abstract class BaseAuthService {
   Future<Either<Failure, Session>> signInAnonymously();
-  Future<Either<Failure, AppUser>> checkAuthStatus();
+  Future<Either<Either<Failure, String>, AppUser>> checkAuthStatus();
   Future<Either<Failure, Unit>> registerAccount({
     required AppUser appUser,
   });
@@ -19,7 +19,7 @@ abstract class BaseAuthService {
 
 class AuthService extends BaseAuthService {
   final Account account;
-  final UserStorage userStorage;
+  final BaseStorage<AppUser> userStorage;
   final Database database;
 
   AuthService({
@@ -42,12 +42,18 @@ class AuthService extends BaseAuthService {
   }
 
   @override
-  Future<Either<Failure, AppUser>> checkAuthStatus() async {
+  Future<Either<Either<Failure, String>, AppUser>> checkAuthStatus() async {
     final user = await userStorage.read();
     if (user != null) {
       return right(user);
+    } else {
+      try {
+        final session = await account.getSession(sessionId: 'current');
+        return left(right(session.userId));
+      } on AppwriteException catch (e) {
+        return left(left(Failure(e.message ?? 'login failed...')));
+      }
     }
-    return left(Failure("Please sign in before continuing..."));
   }
 
   @override
