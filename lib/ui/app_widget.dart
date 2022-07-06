@@ -40,6 +40,7 @@ class _AppWidgetState extends ConsumerState<AppWidget> {
       }),
     );
     return MaterialApp.router(
+      title: 'Shhh',
       routeInformationProvider: appRouter.routeInformationProvider,
       routeInformationParser: appRouter.routeInformationParser,
       routerDelegate: appRouter.routerDelegate,

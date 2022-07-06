@@ -4,4 +4,4 @@ import 'package:secret_dms/models/states/auth_states.dart';
 import 'package:secret_dms/notifiers/auth_notifier.dart';
 
 final authNotifierProvider = StateNotifierProvider<AuthNotifer, AuthState>(
-    (ref) => AuthNotifer(authService, account));
+    (ref) => AuthNotifer(authService));

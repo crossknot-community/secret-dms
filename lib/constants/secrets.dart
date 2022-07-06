@@ -1,4 +1,4 @@
 class AppSecrets {
   const AppSecrets._();
-  static const String apiEndPoint = "";
+  static const String apiEndPoint = '';
 }
