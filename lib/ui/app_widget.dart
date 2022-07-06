@@ -33,6 +33,7 @@ class _AppWidgetState extends ConsumerState<AppWidget> {
           authenticated: (String token) =>
               appRouter.go(AppRouteNames.register, extra: token),
           registered: (AppUser user) {
+            cachedUserManager.cacheUser(user);
             appRouter.go(AppRouteNames.home);
           },
           orElse: () {},
