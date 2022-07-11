@@ -19,9 +19,10 @@ class ShhButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      padding: EdgeInsets.symmetric(
-        vertical: height ?? largeValue,
-        horizontal: width ?? largeValue,
+      minWidth: width ?? largeValue * 2,
+      height: height ?? largeValue,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.adjustSize),
       ),
       color: AppColors.white,
       onPressed: onPressed,

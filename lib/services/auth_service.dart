@@ -37,7 +37,6 @@ class AuthService extends BaseAuthService {
     } on SocketException {
       return left(Failure("Internet Unavailable"));
     } catch (e) {
-      print(e.toString());
       return left(Failure("Unknown error occured."));
     }
   }

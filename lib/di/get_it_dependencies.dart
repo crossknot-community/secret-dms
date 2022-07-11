@@ -11,7 +11,9 @@ import 'package:secret_dms/utils/cached_user.dart';
 final GetIt getIt = GetIt.instance;
 void setupDependencies() {
   getIt.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
-  getIt.registerSingleton<Client>(Client(endPoint: AppSecrets.apiEndPoint));
+  getIt.registerSingleton<Client>(
+    Client(endPoint: AppSecrets.apiEndPoint)..setProject(AppSecrets.projectId),
+  );
   getIt.registerSingleton<Database>(Database(client));
   getIt.registerSingleton<Account>(Account(client));
   getIt.registerSingleton<BaseStorage<AppUser>>(
