@@ -24,3 +24,7 @@ samples, guidance on mobile development, and a full API reference.
 | <img src='./public/images/3b.png' style="width:70%"></img>   | <img src='./public/images/4.png' style="width:70%"></img>  |  <img src='./public/images/5.png' style="width:70%"></img>  |
  <img src='./public/images/6.png' style="width:70%"></img>  |   |   |   |
 |   |   |   |   |   |
+
+## Design
+
+The design specs for this app is [here](https://www.figma.com/file/dWyAjkHNo1bzCeFiEkhtxv/Conduit?node-id=128%3A503) on this figma link.
