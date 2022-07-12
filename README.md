@@ -27,4 +27,4 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Design
 
-The design specs for this app is [here](https://www.figma.com/file/dWyAjkHNo1bzCeFiEkhtxv/Conduit?node-id=128%3A503) on this figma link.
+The design specs for this app is [here](https://www.figma.com/file/dWyAjkHNo1bzCeFiEkhtxv/CrossKnot?node-id=128%3A503) on this figma link.
