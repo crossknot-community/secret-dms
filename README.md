@@ -17,6 +17,9 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Screenshots
 
-| ./public/images/1.png  |   |   |   |   |
+
+|   |   |   |   |   |
+|---|---|---|---|---|
+| <img src='./public/images/1.png' style="width:50%"></img>  |   |   |   |   |
 |   |   |   |   |   |
 |   |   |   |   |   |
