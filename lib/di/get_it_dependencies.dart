@@ -14,7 +14,10 @@ void setupDependencies() {
   getIt.registerSingleton<Client>(
     Client(endPoint: AppSecrets.apiEndPoint)..setProject(AppSecrets.projectId),
   );
-  getIt.registerSingleton<Database>(Database(client));
+  getIt.registerSingleton<Databases>(Databases(
+    client,
+    databaseId: AppSecrets.databaseId,
+  ));
   getIt.registerSingleton<Account>(Account(client));
   getIt.registerSingleton<BaseStorage<AppUser>>(
       UserStorage(flutterSecureStorage));
@@ -25,7 +28,7 @@ void setupDependencies() {
 
 final flutterSecureStorage = getIt.get<FlutterSecureStorage>();
 final client = getIt.get<Client>();
-final database = getIt.get<Database>();
+final database = getIt.get<Databases>();
 final account = getIt.get<Account>();
 final userStorage = getIt.get<BaseStorage<AppUser>>();
 final authService = getIt.get<BaseAuthService>();

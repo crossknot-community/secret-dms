@@ -38,7 +38,16 @@ class AuthNotifer extends StateNotifier<AuthState> {
   }) async {
     final AppUser appUser =
         AppUser(id: sessionToken, username: username, dmLink: dmLink);
-    await _authService.registerAccount(appUser: appUser);
+    final status = await _authService.registerAccount(appUser: appUser);
+    status.fold(
+      (failure) => state = AuthState.failure(failure),
+      (unit) => checkAndUpdateAuthStatus(),
+    );
+  }
+
+  Future<void> signout() async {
+    state = const AuthState.loading();
+    _authService.signout();
     await checkAndUpdateAuthStatus();
   }
 }

@@ -4,7 +4,7 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:secret_dms/constants/app_constants.dart';
+import 'package:secret_dms/constants/secrets.dart';
 import 'package:secret_dms/models/failure.dart';
 import 'package:secret_dms/models/user.dart';
 import 'package:secret_dms/services/local/base_storage.dart';
@@ -15,12 +15,13 @@ abstract class BaseAuthService {
   Future<Either<Failure, Unit>> registerAccount({
     required AppUser appUser,
   });
+  Future<void> signout();
 }
 
 class AuthService extends BaseAuthService {
   final Account account;
   final BaseStorage<AppUser> userStorage;
-  final Database database;
+  final Databases database;
 
   AuthService({
     required this.account,
@@ -61,21 +62,29 @@ class AuthService extends BaseAuthService {
     required AppUser appUser,
   }) async {
     try {
-      final results = await database.listDocuments(
-          collectionId: AppConstants.userCollectionId,
-          queries: [Query.equal('username', appUser.username)]);
-      if (results.total == 0) {
-        return left(Failure("Username exists! Please pick another one."));
-      }
+      // final results = await database.listDocuments(
+      //     collectionId: AppConstants.userCollectionId,
+      //     queries: [Query.equal('username', appUser.username)]);
+      // if (results.total == 0) {
+      //   return left(Failure("Username exists! Please pick another one."));
+      // }
+
       await database.createDocument(
-        collectionId: AppConstants.userCollectionId,
+        collectionId: AppSecrets.collectionId,
         documentId: appUser.id,
         data: appUser.toMap(),
       );
       await userStorage.save(appUser);
       return right(unit);
     } on AppwriteException catch (e) {
+      print(e.toString());
       return left(Failure(e.message ?? 'Something went wrong'));
     }
+  }
+
+  @override
+  Future<void> signout() async {
+    await account.deleteSession(sessionId: 'current');
+    await userStorage.clear();
   }
 }
