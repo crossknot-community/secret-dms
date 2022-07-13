@@ -61,6 +61,12 @@ class AuthService extends BaseAuthService {
     required AppUser appUser,
   }) async {
     try {
+      final results = await database.listDocuments(
+          collectionId: AppConstants.userCollectionId,
+          queries: [Query.equal('username', appUser.username)]);
+      if (results.total == 0) {
+        return left(Failure("Username exists! Please pick another one."));
+      }
       await database.createDocument(
         collectionId: AppConstants.userCollectionId,
         documentId: appUser.id,
