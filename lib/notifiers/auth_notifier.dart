@@ -46,8 +46,8 @@ class AuthNotifer extends StateNotifier<AuthState> {
   }
 
   Future<void> signout() async {
-    state = const AuthState.loading();
-    _authService.signout();
+    // state = const AuthState.loading();
+    await _authService.signout();
     await checkAndUpdateAuthStatus();
   }
 }
