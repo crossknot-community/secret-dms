@@ -36,8 +36,8 @@ class AuthService extends BaseAuthService {
       return left(Failure("Platform not supported yet"));
     } on SocketException {
       return left(Failure("Internet Unavailable"));
-    } catch (e) {
-      return left(Failure("Unknown error occured."));
+    } on AppwriteException catch (e) {
+      return left(Failure(e.message ?? 'Unknown error occured'));
     }
   }
 
