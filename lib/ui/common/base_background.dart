@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:secret_dms/constants/app_colors.dart';
 import 'package:secret_dms/themes/text_styles.dart';
-import 'package:secret_dms/ui/common/circular_gradient_container.dart';
+
+import 'circular_gradient_container.dart';
 
 /// [BaseBackground] widget is a basic stack widget with some customization to fit the needs of design. It's children can have all the properties of [Stack].
 class BaseBackground extends StatelessWidget {
@@ -23,15 +24,15 @@ class BaseBackground extends StatelessWidget {
             left: -100.adjustSize,
             child: CircularGradientContainer(
               radius: 250.adjustSize,
-              color: AppColors.aqua10.withOpacity(.04),
+              color: AppColors.aqua10,
             ),
           ),
           Positioned(
-            bottom: 30.adjustSize,
+            bottom: -30.adjustSize,
             right: -100.adjustSize,
             child: CircularGradientContainer(
               radius: 200.adjustSize,
-              color: AppColors.pink15.withOpacity(0.12),
+              color: AppColors.pink15,
             ),
           ),
           ...children,

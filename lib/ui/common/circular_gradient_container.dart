@@ -1,5 +1,6 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:secret_dms/themes/text_styles.dart';
 
 class CircularGradientContainer extends StatelessWidget {
   const CircularGradientContainer({
@@ -13,18 +14,21 @@ class CircularGradientContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: radius,
-      width: radius,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: color,
-            blurRadius: 100.adjustSize,
-            spreadRadius: radius,
-          )
-        ],
+    return BackdropFilter(
+      filter: ImageFilter.dilate(radiusX: 200, radiusY: 200),
+      child: Container(
+        height: radius,
+        width: radius,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: color,
+              blurRadius: 200,
+              spreadRadius: radius,
+            )
+          ],
+        ),
       ),
     );
   }

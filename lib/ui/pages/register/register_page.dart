@@ -51,9 +51,12 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                             );
                       }
                     },
-                    child: const Icon(
-                      Iconsax.send1,
-                      color: AppColors.white,
+                    child: Transform.rotate(
+                      angle: -0.5,
+                      child: const Icon(
+                        Iconsax.send1,
+                        color: AppColors.white,
+                      ),
                     ),
                   ),
                 ),

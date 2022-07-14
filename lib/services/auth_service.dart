@@ -84,7 +84,8 @@ class AuthService extends BaseAuthService {
 
   @override
   Future<void> signout() async {
-    await account.deleteSession(sessionId: 'current');
+    final session = await account.getSession(sessionId: 'current');
+    await account.deleteSession(sessionId: session.$id);
     await userStorage.clear();
   }
 }

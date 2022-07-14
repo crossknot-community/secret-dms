@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.crossknot.secret_dms">
+   <uses-permission android:name="android.permission.VIBRATE"/>
    <application
         android:label="secret_dms"
         android:name="${applicationName}"
