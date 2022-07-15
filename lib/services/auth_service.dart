@@ -63,8 +63,9 @@ class AuthService extends BaseAuthService {
   }) async {
     try {
       final results = await database.listDocuments(
-          collectionId: AppSecrets.collectionId,
-          queries: [Query.equal('username', appUser.username)]);
+        collectionId: AppSecrets.collectionId,
+      );
+      print(results.documents);
       if (results.total == 0) {
         return left(Failure("Username exists! Please pick another one."));
       }
@@ -77,7 +78,6 @@ class AuthService extends BaseAuthService {
       await userStorage.save(appUser);
       return right(unit);
     } on AppwriteException catch (e) {
-      print(e.toString());
       return left(Failure(e.message ?? 'Something went wrong'));
     }
   }

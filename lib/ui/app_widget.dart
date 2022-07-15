@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:secret_dms/constants/app_colors.dart';
 import 'package:secret_dms/di/di.dart';
 import 'package:secret_dms/models/states/auth_states.dart';
 import 'package:secret_dms/models/user.dart';
@@ -45,6 +46,20 @@ class _AppWidgetState extends ConsumerState<AppWidget> {
       routeInformationProvider: appRouter.routeInformationProvider,
       routeInformationParser: appRouter.routeInformationParser,
       routerDelegate: appRouter.routerDelegate,
+      theme: ThemeData.from(
+          colorScheme: const ColorScheme(
+        brightness: Brightness.dark,
+        primary: AppColors.primaryColor,
+        onPrimary: AppColors.white,
+        secondary: AppColors.white,
+        onSecondary: AppColors.dark600,
+        error: AppColors.red,
+        onError: AppColors.white,
+        background: AppColors.primaryColor,
+        onBackground: AppColors.white,
+        surface: AppColors.primaryColor,
+        onSurface: AppColors.white,
+      )),
     );
   }
 }
