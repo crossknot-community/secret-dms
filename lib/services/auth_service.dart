@@ -44,16 +44,19 @@ class AuthService extends BaseAuthService {
 
   @override
   Future<Either<Either<Failure, String>, AppUser>> checkAuthStatus() async {
-    final user = await userStorage.read();
-    if (user != null) {
-      return right(user);
-    } else {
-      try {
-        final session = await account.getSession(sessionId: 'current');
-        return left(right(session.userId));
-      } on AppwriteException catch (e) {
-        return left(left(Failure(e.message ?? 'login failed...')));
+    try {
+      final session = await account.getSession(sessionId: 'current');
+      final user = await userStorage.read();
+      if (session.userId.isEmpty) {
+        await userStorage.clear();
+        return left(
+            left(Failure('Session expired, please make another account.')));
+      } else if (user != null) {
+        return right(user);
       }
+      return left(right(session.userId));
+    } on AppwriteException catch (e) {
+      return left(left(Failure(e.message ?? 'login failed...')));
     }
   }
 
@@ -64,9 +67,11 @@ class AuthService extends BaseAuthService {
     try {
       final results = await database.listDocuments(
         collectionId: AppSecrets.collectionId,
+        queries: [
+          Query.equal('username', appUser.username),
+        ],
       );
-      print(results.documents);
-      if (results.total == 0) {
+      if (results.total > 0) {
         return left(Failure("Username exists! Please pick another one."));
       }
 
