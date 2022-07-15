@@ -42,6 +42,12 @@ class AuthService extends BaseAuthService {
     }
   }
 
+  /// First off we fetch [session] of the current user
+  /// and read the local db if the user is registered.
+  /// if the user is signed in this function returns
+  /// [AuthState.authenticated(sessionId)] if the user
+  /// is registered then it returns [AuthState.registered(user)]
+  /// if the [user] is present in the local db but the session has expired it clears the db and logs out the user.
   @override
   Future<Either<Either<Failure, String>, AppUser>> checkAuthStatus() async {
     try {
