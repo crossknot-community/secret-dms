@@ -32,7 +32,9 @@
                 <!-- Accepts URIs that begin with https://YOUR_HOST -->
                 <data
                 android:scheme="https"
-                android:host="shhh.crossknotcommunity.tech" />
+                android:host="shhh.crossknotcommunity.tech" 
+                android:pathPrefix='/'
+                />
             </intent-filter>
         </activity>
         <activity android:name="com.linusu.flutter_web_auth.CallbackActivity" android:exported="true">

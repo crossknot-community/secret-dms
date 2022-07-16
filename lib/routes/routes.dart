@@ -4,6 +4,7 @@ import 'package:secret_dms/routes/route_names.dart';
 import 'package:secret_dms/ui/pages/home/home_page.dart';
 import 'package:secret_dms/ui/pages/inbox/inbox_page.dart';
 import 'package:secret_dms/ui/pages/login/login_page.dart';
+import 'package:secret_dms/ui/pages/profile/profile_page.dart';
 import 'package:secret_dms/ui/pages/register/register_page.dart';
 import 'package:secret_dms/ui/pages/settings/settings_page.dart';
 import 'package:secret_dms/ui/pages/splash/splash_page.dart';
@@ -22,6 +23,16 @@ final appRoutes = <GoRoute>[
         final String sessionToken = state.extra as String;
         return CustomTransitionPage<void>(
           child: RegisterPage(sessionToken),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              FadeTransition(opacity: animation, child: child),
+        );
+      }),
+  GoRoute(
+      path: AppRouteNames.profile,
+      pageBuilder: (context, state) {
+        final String username = state.extra as String;
+        return CustomTransitionPage<void>(
+          child: ProfilePage(username: username),
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               FadeTransition(opacity: animation, child: child),
         );
