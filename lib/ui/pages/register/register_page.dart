@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:secret_dms/constants/app_assets.dart';
 import 'package:secret_dms/constants/app_colors.dart';
+import 'package:secret_dms/constants/app_constants.dart';
 import 'package:secret_dms/di/di.dart';
 import 'package:secret_dms/models/states/auth_states.dart';
 import 'package:secret_dms/themes/size_config.dart';
@@ -46,7 +47,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                       if (_userController.text.isNotEmpty) {
                         ref.watch(authNotifierProvider.notifier).registerUser(
                               username: _userController.text,
-                              dmLink: 'dmLink',
+                              dmLink:
+                                  '${AppConstants.profileLinkPrefix}/${_userController.text}',
                               sessionToken: widget.sessionToken,
                             );
                       }

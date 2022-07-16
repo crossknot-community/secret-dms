@@ -7,6 +7,7 @@ import 'package:secret_dms/utils/provider_logger.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setupDependencies();
+
   runApp(
     ProviderScope(
       observers: [Logger()],
