@@ -30,6 +30,7 @@ migrate_working_dir/
 .packages
 .pub-cache/
 .pub/
+.env
 /build/
 /lib/firebase_options.dart
 /android/app/google-services.json

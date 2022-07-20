@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:secret_dms/constants/secrets.dart';
 import 'package:secret_dms/models/failure.dart';
 import 'package:secret_dms/models/user.dart';
 import 'package:secret_dms/services/local/base_storage.dart';
@@ -72,7 +72,7 @@ class AuthService extends BaseAuthService {
   }) async {
     try {
       final results = await database.listDocuments(
-        collectionId: AppSecrets.collectionId,
+        collectionId: dotenv.env['COLLECTION_ID']!,
         queries: [
           Query.equal('username', appUser.username),
         ],
@@ -82,7 +82,7 @@ class AuthService extends BaseAuthService {
       }
 
       await database.createDocument(
-        collectionId: AppSecrets.collectionId,
+        collectionId: dotenv.env['COLLECTION_ID']!,
         documentId: appUser.id,
         data: appUser.toMap(),
       );
