@@ -1,19 +1,28 @@
+import 'dart:async';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:secret_dms/di/di.dart';
 import 'package:secret_dms/ui/app_widget.dart';
 import 'package:secret_dms/utils/provider_logger.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  setupDependencies();
+Future<void> main() async {
+  runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load();
+    print('Dot Env loaded');
+    setupDependencies();
 
-  runApp(
-    ProviderScope(
-      observers: [Logger()],
-      child: const MyApp(),
-    ),
-  );
+    runApp(
+      ProviderScope(
+        observers: [Logger()],
+        child: const MyApp(),
+      ),
+    );
+  }, (error, stack) {
+    print('$error');
+  });
 }
 
 class MyApp extends StatelessWidget {

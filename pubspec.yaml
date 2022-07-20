@@ -22,6 +22,7 @@ dependencies:
   flutter_svg: ^1.1.1+1
   iconsax: ^0.0.8
   uni_links: ^0.5.1
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +36,7 @@ flutter:
 
   # Images used in the app
   assets:
+    - .env
     - assets/images/
 
   # Fonts used in the app
