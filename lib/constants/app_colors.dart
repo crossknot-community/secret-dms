@@ -35,6 +35,7 @@ class AppColors {
   static const Color dark900 = Color(0xFF131825);
 
   static const Color textColor = Color(0xFF1A2232);
+  static const Color linkColor = Color(0xFF34B8B2);
 
   /// Colors used in gradient
   static const Color aqua10 = Color(0x1A3CFFF6);
