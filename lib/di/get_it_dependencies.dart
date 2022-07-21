@@ -20,7 +20,7 @@ void setupDependencies() {
   );
   getIt.registerSingleton<Databases>(Databases(
     client,
-    databaseId: dotenv.get('DATABASE_ID'),
+    databaseId: dotenv.env['DATABASE_ID']!,
   ));
   getIt.registerSingleton<Account>(Account(client));
   getIt.registerSingleton<BaseStorage<AppUser>>(

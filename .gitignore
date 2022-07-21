@@ -36,6 +36,10 @@ migrate_working_dir/
 /android/app/google-services.json
 /ios/firebase_app_id_file.json
 lib/constants/secrets.dart
+
+# appwrite related
+/appwrite/
+
 # Web related
 lib/generated_plugin_registrant.dart
 
