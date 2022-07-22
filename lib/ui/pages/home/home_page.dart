@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:secret_dms/services/app_link_service.dart';
+import 'package:secret_dms/ui/common/base_background.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,7 +21,11 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text("Home View")),
+      body: BaseBackground(
+        children: [
+          Center(child: Text("Home View")),
+        ],
+      ),
     );
   }
 
