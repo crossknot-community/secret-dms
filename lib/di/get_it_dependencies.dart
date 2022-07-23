@@ -30,7 +30,7 @@ void setupDependencies() {
   getIt.registerSingleton<BaseAuthService>(AuthService(
       account: account, database: database, userStorage: userStorage));
   getIt.registerSingleton<CachedUserManager>(CachedUserManager());
-  getIt.registerSingleton<SecretDmLinkService>(SecretDmLinkService(AppLinks()));
+  getIt.registerSingleton<AppLinkService>(AppLinkService(AppLinks()));
 }
 
 final flutterSecureStorage = getIt.get<FlutterSecureStorage>();
@@ -41,4 +41,4 @@ final userStorage = getIt.get<BaseStorage<AppUser>>();
 final authService = getIt.get<BaseAuthService>();
 final cachedUserManager = getIt.get<CachedUserManager>();
 final appUser = cachedUserManager.appUser;
-final secretDmLinkService = getIt.get<SecretDmLinkService>();
+final secretDmLinkService = getIt.get<AppLinkService>();
