@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:secret_dms/constants/app_colors.dart';
 import 'package:secret_dms/themes/text_styles.dart';
-
-import 'circular_gradient_container.dart';
+import 'package:secret_dms/ui/common/circular_gradient_container.dart';
 
 /// [BaseBackground] widget is a basic stack widget with some customization to fit the needs of design. It's children can have all the properties of [Stack].
 class BaseBackground extends StatelessWidget {

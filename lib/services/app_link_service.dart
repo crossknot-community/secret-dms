@@ -1,38 +1,37 @@
 import 'dart:async';
 
+import 'package:app_links/app_links.dart';
 import 'package:secret_dms/routes/route_names.dart';
 import 'package:secret_dms/routes/routes.dart';
-import 'package:uni_links/uni_links.dart';
 
-class AppLinkService {
-  AppLinkService._();
+class SecretDmLinkService {
+  SecretDmLinkService(this._appLinks);
 
-  static late StreamSubscription _sub;
-  static Future<void> handleInitialLink() async {
-    final initialLink = await getInitialLink();
-    if (initialLink != null) {
-      final uri = Uri.parse(initialLink);
-      final path = uri.path;
-      final username = path.replaceAll('/', '');
+  final AppLinks _appLinks;
+
+  late StreamSubscription _sub;
+  Future<void> handleInitialLink() async {
+    final initialLinkUri = await _appLinks.getInitialAppLink();
+    if (initialLinkUri != null) {
+      final username = _getUsernameFromUri(initialLinkUri);
       _navigateToProfilePage(username);
     }
   }
 
-  static void _navigateToProfilePage(String username) =>
+  String _getUsernameFromUri(Uri url) => url.path.replaceAll('/', '');
+
+  void _navigateToProfilePage(String username) =>
       appRouter.go(AppRouteNames.profile, extra: username);
 
-  static void handleIncomingLinks() {
-    _sub = linkStream.listen(
-      (event) {
-        if (event != null) {
-          final uri = Uri.parse(event);
-          final path = uri.path;
-          print('path : $path');
-        }
+  void handleIncomingLinks() {
+    _sub = _appLinks.uriLinkStream.listen(
+      (linkUri) {
+        final username = _getUsernameFromUri(linkUri);
+        _navigateToProfilePage(username);
       },
       onError: (err) {},
     );
   }
 
-  static void disposeLink() => _sub.cancel();
+  void disposeLink() => _sub.cancel();
 }
