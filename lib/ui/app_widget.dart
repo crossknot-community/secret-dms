@@ -23,6 +23,15 @@ class AppWidget extends ConsumerStatefulWidget {
 
 class _AppWidgetState extends ConsumerState<AppWidget> {
   @override
+  void initState() {
+    Future.microtask(() {
+      ref.refresh(appLinkNotifier);
+      ref.watch(appLinkNotifier.notifier).handleIncomingLinks();
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     ref.watch(initializationProvider);
     ref.listen<AuthState>(
@@ -61,5 +70,12 @@ class _AppWidgetState extends ConsumerState<AppWidget> {
         onSurface: AppColors.white,
       )),
     );
+  }
+
+  @override
+  void dispose() {
+    // Disposing the app link's subsription and not in homescreen so if homescreen is killed also the subscription should be closed only when app is closed.
+    ref.read(appLinkNotifier.notifier).cancelLinkSubscription();
+    super.dispose();
   }
 }
