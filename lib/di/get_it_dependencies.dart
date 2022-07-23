@@ -1,8 +1,10 @@
+import 'package:app_links/app_links.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:secret_dms/models/user.dart';
+import 'package:secret_dms/services/app_link_service.dart';
 import 'package:secret_dms/services/auth_service.dart';
 import 'package:secret_dms/services/local/base_storage.dart';
 import 'package:secret_dms/services/local/user_storage.dart';
@@ -28,6 +30,7 @@ void setupDependencies() {
   getIt.registerSingleton<BaseAuthService>(AuthService(
       account: account, database: database, userStorage: userStorage));
   getIt.registerSingleton<CachedUserManager>(CachedUserManager());
+  getIt.registerSingleton<SecretDmLinkService>(SecretDmLinkService(AppLinks()));
 }
 
 final flutterSecureStorage = getIt.get<FlutterSecureStorage>();
@@ -38,3 +41,4 @@ final userStorage = getIt.get<BaseStorage<AppUser>>();
 final authService = getIt.get<BaseAuthService>();
 final cachedUserManager = getIt.get<CachedUserManager>();
 final appUser = cachedUserManager.appUser;
+final secretDmLinkService = getIt.get<SecretDmLinkService>();

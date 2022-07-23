@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:secret_dms/services/app_link_service.dart';
+import 'package:secret_dms/di/di.dart';
 import 'package:secret_dms/ui/common/base_background.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -13,8 +13,8 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
-    AppLinkService.handleInitialLink();
-    AppLinkService.handleIncomingLinks();
+    secretDmLinkService.handleInitialLink();
+    secretDmLinkService.handleIncomingLinks();
     super.initState();
   }
 
@@ -31,7 +31,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   void dispose() {
-    AppLinkService.disposeLink();
+    secretDmLinkService.disposeLink();
     super.dispose();
   }
 }
