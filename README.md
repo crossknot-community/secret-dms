@@ -1,4 +1,4 @@
-# secret_dms
+# Secret Dms : Shhh
 
 A new Flutter project.
 
@@ -18,13 +18,14 @@ samples, guidance on mobile development, and a full API reference.
 ## Screenshots
 
 
-|   |   |   |   
-|---|---|---|
-| <img src='./public/images/1.png' style="width:70%"></img>  | <img src='./public/images/2.png' style="width:70%"></img>   |  <img src='./public/images/3a.png' style="width:70%"></img>  
-| <img src='./public/images/3b.png' style="width:70%"></img>   | <img src='./public/images/4.png' style="width:70%"></img>  |  <img src='./public/images/5.png' style="width:70%"></img>  |
- <img src='./public/images/6.png' style="width:70%"></img>  |   |   |   |
-|   |   |   |   |   |
+
+
+| <img src='./public/images/1.png' style="width:70%"></img>  | <img src='./public/images/2.png' style="width:70%"></img> | <img src='./public/images/3a.png' style="width:70%"></img> |
+| ---------------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------- |
+| <img src='./public/images/3b.png' style="width:70%"></img> | <img src='./public/images/4.png' style="width:70%"></img> | <img src='./public/images/5.png' style="width:70%"></img>  |
+| <img src='./public/images/6.png' style="width:70%"></img>  |                                                           |                                                            |
 
 ## Design
 
-The design specs for this app is [here](https://www.figma.com/file/dWyAjkHNo1bzCeFiEkhtxv/CrossKnot?node-id=128%3A503) on this figma link.
+The design specs for this app is [here](https://www.figma.com/file/dWyAjkHNo1bzCeFiEkhtxv/CrossKnot?node-id=128%3A503) on this figma link. Thanks to [Shitiz](https://twitter.com/Shitiz_Agg) for helping us with the UI for this app.
+
