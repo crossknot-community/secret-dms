@@ -9,6 +9,7 @@ class ShhButton extends StatelessWidget {
     required this.text,
     this.width,
     this.height,
+    this.icon,
     Key? key,
   }) : super(key: key);
 
@@ -16,6 +17,8 @@ class ShhButton extends StatelessWidget {
   final String text;
   final double? width;
   final double? height;
+  final Icon? icon;
+
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -26,9 +29,16 @@ class ShhButton extends StatelessWidget {
       ),
       color: AppColors.white,
       onPressed: onPressed,
-      child: Text(
-        text,
-        style: AppTextStyles.p3,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (icon != null) icon!,
+          if (icon != null) hSizedBox2,
+          Text(
+            text,
+            style: AppTextStyles.p3,
+          ),
+        ],
       ),
     );
   }
